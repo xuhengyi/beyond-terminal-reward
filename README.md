@@ -50,5 +50,3 @@ uv run --no-dev python experiments/shopping-sft/04_evaluate_pilot.py \
 ~~~
 
 TRACE 的正式 Final-200 评测入口接受已完成的 100 步运行报告。传入 `--model-kind trace-grpo --split final --allow-blind-final --tasks 200 --budget-yuan 30`，并用 `--run-result` 指向对应的训练报告。环境由各实验入口在本机创建和关闭。SwanLab 同步入口为 `experiments/shopping-sft/05_sync_evaluation.py`。
-
-上游环境、数据、Reward v3 与 TRACE 基础实现来自 [shopping-grpo-longhorizon](https://github.com/YYHDBL/shopping-grpo-longhorizon)。本仓库保存 PyTRIO 训练、信用诊断和评测代码。上游数据与运行结果均由使用者在本地准备。
