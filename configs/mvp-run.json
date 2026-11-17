@@ -1,0 +1,59 @@
+{
+  "schema_version": "beyond-terminal-reward-mvp-run-v1",
+  "model": {
+    "id": "Qwen/Qwen3.5-2B",
+    "revision": "REPLACE_WITH_RESOLVED_HUGGING_FACE_REVISION"
+  },
+  "upstream": {
+    "path": "vendor/shopping-grpo-longhorizon",
+    "commit": "dc6c9af8e48c8e6325101b39d1d20060f69e4221",
+    "patches": ["patches/shopping-grpo-runtime-manifest.patch"],
+    "environment": "shopsimulator-environment-v2.1",
+    "reward": "shopsimulator-reward-v3"
+  },
+  "data_manifest": "artifacts/mvp/manifest.json",
+  "sft": {
+    "epochs": 1,
+    "lora_rank": 16,
+    "lora_alpha": 32,
+    "lora_dropout": 0.05,
+    "learning_rate": 0.0001,
+    "per_device_train_batch_size": 1,
+    "gradient_accumulation_steps": 8,
+    "max_length": 24576,
+    "dtype": "bf16",
+    "gradient_checkpointing": true
+  },
+  "grpo_common": {
+    "updates_required": 5,
+    "train_batch_size": 2,
+    "rollouts_per_prompt": 4,
+    "learning_rate": 0.000001,
+    "temperature": 0.7,
+    "top_p": 0.9,
+    "max_model_length": 24576,
+    "max_new_tokens_per_turn": 512,
+    "environment_max_steps": 35,
+    "loss_aggregation": "token-mean",
+    "advantage_standard_deviation_normalization": false,
+    "length_shaping": false
+  },
+  "trace": {
+    "epsilon": 0.1,
+    "horizon": 3,
+    "discount": 0.8,
+    "terminal_weight": 2.0,
+    "outcome_weight": 1.0,
+    "turn_weight": 0.2,
+    "enabled_for_terminal_branch": false,
+    "enabled_for_trace_branch": true
+  },
+  "evaluation": {
+    "tasks": 30,
+    "samples_per_task": 1,
+    "temperature": 0.0,
+    "top_p": 1.0,
+    "do_sample": false,
+    "methods": ["base", "sft", "terminal_grpo", "trace_grpo"]
+  }
+}

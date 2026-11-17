@@ -1,0 +1,21 @@
+{
+  "base_model": "Qwen/Qwen3.5-4B",
+  "data": "vendor/shopping-grpo-longhorizon/data/sft/train.jsonl",
+  "validation_data": "vendor/shopping-grpo-longhorizon/data/sft/validation.jsonl",
+  "output_dir": "experiments/shopping-sft/outputs/full_sft_4b",
+  "max_length": 32768,
+  "max_samples": 800,
+  "max_validation_samples": 200,
+  "batch_size": 8,
+  "epochs": 3,
+  "steps": 300,
+  "require_complete_epochs": true,
+  "lora_rank": 16,
+  "learning_rate": 0.0001,
+  "lr_schedule": "linear",
+  "warmup_ratio": 0.03,
+  "seed": 42,
+  "swanlab_mode": "online",
+  "swanlab_project": "beyond-terminal-reward",
+  "train_price_per_million": 4.54
+}

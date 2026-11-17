@@ -1,0 +1,23 @@
+[project]
+name = "beyond-terminal-reward"
+version = "0.1.0"
+description = "Shopping agent SFT and credit assignment experiments on PyTRIO"
+requires-python = ">=3.13"
+dependencies = [
+    "httpx==0.28.1",
+    "numpy==2.5.1",
+    "pytrio==0.2.9",
+    "swanlab==0.10.4",
+    "transformers==5.13.0",
+]
+
+[dependency-groups]
+dev = ["torch==2.13.0"]
+
+[tool.uv.sources]
+torch = { index = "pytorch-cpu" }
+
+[[tool.uv.index]]
+name = "pytorch-cpu"
+url = "https://download.pytorch.org/whl/cpu"
+explicit = true
